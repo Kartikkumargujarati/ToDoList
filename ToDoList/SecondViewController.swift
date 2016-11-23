@@ -15,10 +15,12 @@ class SecondViewController: UIViewController {
     @IBAction func addClicked(_ sender: AnyObject) {
         doList.append(textBox.text!)
         textBox.text = ""
+        UserDefaults.standard.set(doList, forKey: "doList")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {

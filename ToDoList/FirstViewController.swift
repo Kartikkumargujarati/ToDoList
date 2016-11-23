@@ -16,6 +16,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        if UserDefaults.standard.array(forKey: "doList") != nil {
+            doList = UserDefaults.standard.array(forKey: "doList") as! [String]
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +38,16 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.textLabel?.text = doList[indexPath.row]
         return cell
     }
+    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            doList.remove(at: indexPath.row)
+            UserDefaults.standard.set(doList, forKey: "doList")
+            toDoList.reloadData()
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         toDoList.reloadData()
     }
