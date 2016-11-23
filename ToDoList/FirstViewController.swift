@@ -30,8 +30,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "Cell")
-        
+        cell.textLabel?.text = doList[indexPath.row]
         return cell
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        toDoList.reloadData()
     }
 
 }
